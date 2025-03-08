@@ -112,7 +112,8 @@ class Semaphore {
     */
     void reset(size_t new_max_value);
 
-  private:
+    void _release(SmallVector<Node*>&);
+private:
 
     mutable std::mutex _mtx;
     
@@ -123,7 +124,6 @@ class Semaphore {
 
     bool _try_acquire_or_wait(Node*);
 
-    void _release(SmallVector<Node*>&);
 };
 
 inline Semaphore::Semaphore(size_t max_value) :

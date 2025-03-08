@@ -1041,7 +1041,9 @@ class Executor {
   >
   auto dependent_async(P&& params, F&& func, I first, I last);
 
-  private:
+    template <typename I>
+    void _schedule(Worker&, I, I);
+private:
     
   const size_t _MAX_STEALS;
   
@@ -1112,10 +1114,7 @@ class Executor {
   template <typename I>
   void _corun_graph(Worker&, Node*, I, I);
 
-  template <typename I>
-  void _schedule(Worker&, I, I);
-
-  template <typename I>
+        template <typename I>
   void _schedule(I, I);
 
   template <typename I>
